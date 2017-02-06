@@ -1,0 +1,10 @@
+{
+	"name": "client",
+	"version": false,
+	"dependencies": {},
+	"globalDependencies": {
+		"core-js": "registry:dt/core-js",
+		"jasmine": "registry:dt/jasmine",
+		"node": "registry:dt/node"
+	}
+}

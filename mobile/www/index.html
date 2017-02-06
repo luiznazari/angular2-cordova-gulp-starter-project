@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cordova + Angular 2</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="./">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- If add this line, script begin a infinite loop
+         see http://stackoverflow.com/questions/28256021/cordova-not-running-normally
+    <!-- <script type="text/javascript" src="cordova.js"></script> -->
+
+    <script src="lib/js/vendors.min.js"></script>
+    <script>
+      System.import('main.js').catch(function(err){ console.error(err); });
+    </script>
+  </head>
+
+  <body>
+    <my-app>Loading AppComponent content here ...</my-app>
+  </body>
+</html>

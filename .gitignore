@@ -1,0 +1,14 @@
+.idea
+.vscode
+node_modules
+jspm_packages
+typings
+npm-debug.log
+debug.log
+src/**/*.js
+*.js.map
+!src/systemjs.config.js
+mobile/www/main*
+mobile/www/lib
+mobile/www/app
+mobile/platforms/*

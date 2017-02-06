@@ -1,0 +1,1 @@
+## Base project set up for Cordova + Angular 2
