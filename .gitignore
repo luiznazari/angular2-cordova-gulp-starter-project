@@ -13,3 +13,4 @@ mobile/www/lib
 mobile/www/app
 mobile/www/resources/css
 mobile/platforms/*
+mobile/plugins/*/
