@@ -1,11 +1,14 @@
 const del = require('del');
 const gulp = require('gulp');
 const concat = require('gulp-concat');
-const liveServer = require('gulp-live-server');
 const plumber = require('gulp-plumber');
-const runSequence = require('run-sequence');
-const sourcemaps = require('gulp-sourcemaps');
 const sysBuilder = require('systemjs-builder');
+const liveServer = require('gulp-live-server');
+const runSequence = require('run-sequence');
+const sass = require('gulp-sass');
+const sassLint = require('gulp-sass-lint');
+const cleanCSS = require('gulp-clean-css');
+const sourcemaps = require('gulp-sourcemaps');
 const tslint = require('gulp-tslint');
 const tsc = require('gulp-typescript');
 const uglify = require('gulp-uglify');
@@ -20,6 +23,10 @@ gulp.task('clean:dist:js', function () {
   return del(resourcesDir + '/dist/js/*');
 });
 
+gulp.task('clean:css', function() {
+  return del(resourcesDir + '/resources/css/**/*')
+})
+
 // Clean library directory
 gulp.task('clean:lib', function () {
   return del(resourcesDir + '/lib/**/*');
@@ -27,6 +34,37 @@ gulp.task('clean:lib', function () {
 
 gulp.task('clean:app:js', function() {
   return del(resourcesDir + '/app/**/*')
+});
+
+// Lint Sass/Scss
+gulp.task('lint:sass', function() {
+  return gulp.src(appDir + '/resources/**/*.scss')
+    .pipe(plumber({
+      errorHandler: function (err) {
+        console.error('>>> [sass-lint] Sass linting failed'.bold.green);
+        this.emit('end');
+      }}))
+    .pipe(sassLint())
+    .pipe(sassLint.format())
+    .pipe(sassLint.failOnError());
+});
+
+// Compile SASS/SCSS to CSS, concatenate, and minify
+gulp.task('compile:sass', function () {
+  // concat and minify global scss files
+  gulp
+    .src(appDir + '/resources/**/*.scss')
+    .pipe(plumber({
+      errorHandler: function (err) {
+        console.error('>>> [sass] Sass global style compilation failed'.bold.green);
+        this.emit('end');
+      }}))
+    .pipe(sourcemaps.init())
+    .pipe(sass({ errLogToConsole: true }))
+    .pipe(concat('styles.min.css'))
+    .pipe(cleanCSS())
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(resourcesDir + '/resources/css'));
 });
 
 // Lint Typescript
@@ -125,7 +163,7 @@ gulp.task('tsconfig-glob', function () {
 
 gulp.task('lint', ['lint:ts']);
 
-gulp.task('clean', ['clean:dist:js', 'clean:lib', 'clean:app:js']);
+gulp.task('clean', ['clean:dist:js', 'clean:css', 'clean:lib', 'clean:app:js']);
 
 gulp.task('copy', function(callback) {
   runSequence('clean:lib', 'copy:libs', callback);
@@ -139,7 +177,14 @@ gulp.task('scripts', function(callback) {
   runSequence(['lint:ts', 'clean:dist:js'], 'compile:ts', 'bundle:js', 'minify:js', callback);
 });
 */
+gulp.task('styles', function(callback) {
+  runSequence(['lint:sass', 'clean:css'], ['compile:sass'], callback);
+});
 
 gulp.task('build', function(callback) {
-  runSequence('copy', 'scripts', callback);
+  runSequence('copy', 'scripts', 'styles', callback);
+});
+
+gulp.task('watch', ['compile:sass'], function() {
+  gulp.watch(appDir + '/resources/**/*.scss', ['compile:sass']);
 });
