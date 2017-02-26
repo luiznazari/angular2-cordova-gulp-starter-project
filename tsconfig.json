@@ -1,22 +1,21 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "sourceMap": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "lib": [ "es2015", "dom" ],
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noUnusedParameters": true,
-    "noUnusedLocals": true,
-    "allowUnusedLabels": false,
-    "suppressImplicitAnyIndexErrors": true,
-    "rootDir": "src",
-    "outDir": "mobile/www"
-  },
-  "exclude": [
-    "node_modules"
-  ]
+	"compilerOptions": {
+		"lib": [ "es5", "dom" ],
+		"target": "es5",
+		"module": "commonjs",
+		"outDir": "mobile/www",
+		"moduleResolution": "node",
+		"sourceMap": true,
+		"noImplicitAny": true,
+		"noUnusedLocals": true,
+		"noImplicitReturns": true,
+		"noUnusedParameters": true,
+		"allowUnusedLabels": false,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"suppressImplicitAnyIndexErrors": true
+	},
+	"exclude": [
+		"node_modules"
+	]
 }

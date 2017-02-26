@@ -1,0 +1,21 @@
+# Options: https://github.com/sasstools/sass-lint#configuration-documentation
+# Rules: https://github.com/sasstools/sass-lint/tree/master/docs/rules
+
+rules:
+  nesting-depth:
+    - 1
+    - max-depth: 3
+  indentation:
+    - 1
+    - size: "tab"
+  no-color-literals: 0
+  no-duplicate-properties: 0
+  no-qualifying-elements:
+    - 1
+    -
+      allow-element-with-attribute: true
+      allow-element-with-class: true
+      allow-element-with-id: false
+  property-sort-order:
+    - 1
+    - order: "smacss"

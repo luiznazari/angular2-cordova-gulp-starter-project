@@ -1,0 +1,33 @@
+$bg-color: #1976d2;
+$text-color: #fff;
+$angular-color: #dd0031;
+$angular-color2: #c3002f;
+
+
+body {
+	background-color: $bg-color;
+	color: $text-color;
+	font-family: sans-serif;
+}
+
+.center {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.angular-container {
+	width: 100px;
+	height: 100px;
+	margin: 0 auto;
+	background: $angular-color;
+	background: linear-gradient(-45deg, $angular-color2 50%, $angular-color 50%);
+	line-height: 100px;
+}
+
+h1 {
+	&.angular {
+		color: $text-color;
+		font-size: 64px;
+		font-weight: 400;
+	}
+}
