@@ -3,27 +3,36 @@
 		"Rules: https://palantir.github.io/tslint/rules/",
 		"Options: https://palantir.github.io/tslint/usage/tslint-json/"
 	],
-
-	"extends": ["tslint:recommended"],
-
+	"extends": [
+		"tslint:recommended",
+		"tslint-no-unused-expression-chai"
+	],
 	"rules": {
 		"class-name": true,
-		"comment-format": [true,
+		"comment-format": [
+			true,
 			"check-space"
 		],
-		"indent": [true,
+		"indent": [
+			true,
 			"tab"
 		],
-		"one-line": [true,
+		"one-line": [
+			true,
 			"check-open-brace",
 			"check-whitespace"
 		],
-		"quotemark": [true,
+		"quotemark": [
+			true,
 			"single",
 			"avoid-escape"
 		],
-		"semicolon": [true, "ignore-bound-class-methods"],
-		"whitespace": [true,
+		"semicolon": [
+			true,
+			"ignore-bound-class-methods"
+		],
+		"whitespace": [
+			true,
 			"check-branch",
 			"check-decl",
 			"check-operator",
@@ -31,17 +40,22 @@
 			"check-separator",
 			"check-type"
 		],
-		"typedef-whitespace": [true, {
-			"call-signature": "nospace",
-			"index-signature": "nospace",
-			"parameter": "nospace",
-			"property-declaration": "nospace",
-			"variable-declaration": "nospace"
-		}],
-		"arrow-parens": [true, "ban-single-arg-parens"],
+		"typedef-whitespace": [
+			true,
+			{
+				"call-signature": "nospace",
+				"index-signature": "nospace",
+				"parameter": "nospace",
+				"property-declaration": "nospace",
+				"variable-declaration": "nospace"
+			}
+		],
+		"arrow-parens": [
+			true,
+			"ban-single-arg-parens"
+		],
 		"prefer-const": false,
 		"member-access": false,
-		"no-unused-new": true,
 		"no-var-keyword": true,
 		"ordered-imports": false,
 		"linebreak-style": false,
@@ -49,14 +63,25 @@
 		"no-internal-module": true,
 		"no-inferrable-types": false,
 		"no-shadowed-variable": true,
-		"max-classes-per-file": [false, 1],
+		"max-classes-per-file": [
+			false,
+			1
+		],
 		"only-arrow-functions": false,
 		"no-trailing-whitespace": true,
-		"variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"],
-		"trailing-comma": [false, {
-			"multiline": "always",
-			"singleline": "never"
-		}],
+		"variable-name": [
+			true,
+			"ban-keywords",
+			"check-format",
+			"allow-leading-underscore"
+		],
+		"trailing-comma": [
+			false,
+			{
+				"multiline": "always",
+				"singleline": "never"
+			}
+		],
 		"object-literal-sort-keys": false
 	}
 }

@@ -7,6 +7,8 @@ const uglify = require('gulp-uglify');
 const buffer = require('vinyl-buffer');
 const assign = require('lodash.assign');
 const source = require('vinyl-source-stream');
+const sourcemaps = require('gulp-sourcemaps');
+const cleanCSS = require('gulp-clean-css');
 const watchify = require('watchify');
 const browserify = require('browserify');
 const utils = require('../utils.js')
@@ -37,19 +39,22 @@ function bundle(bundler) {
 		.bundle()
 		.pipe(utils.onError('[browserify] Browserify bundle failed'))
 		.pipe(source('bundle.min.js'))
-		.pipe(_if(GULP_ENV.prod, buffer()))
+		.pipe(buffer())
+		.pipe(_if(!GULP_ENV.prod, sourcemaps.init({ loadMaps: true })))
+		.pipe(_if(!GULP_ENV.prod, gulp.dest(paths.appBuildResources + '/js')))
 		.pipe(_if(GULP_ENV.prod, uglify()))
+		.pipe(_if(!GULP_ENV.prod, sourcemaps.write()))
 		.pipe(gulp.dest(paths.appBuildResources + '/js'));
 }
 
-gulp.task('bundle:browserify', function() {
+gulp.task('bundle:browserify', function () {
 	if (GULP_ENV.prod) {
-		utils.log('Optimizing bundled files...');
+		utils.log('Optimizing bundled file...');
 	}
 	return bundle(bundler());
 });
 
-gulp.task('bundle:watch', function() {
+gulp.task('bundle:watch', function () {
 	let b = watchify(bundler());
 	b.on('update', () => bundle(b));
 	b.on('log', utils.log);
@@ -60,18 +65,22 @@ gulp.task('bundle:watch', function() {
 
 // Concat and uglify golbal libraries.
 // Global libraries should not be imported into app's modules (eg.: main.ts).
-gulp.task('bundle:globals', function() {
+gulp.task('bundle:globals', function () {
 	let globals = require(paths.appSrc + "/index.globals.json");
-	let modules = (globals.modules || []).map(module => paths.appNodeModules + '/' + module);
 
-	gulp.src(modules)
+	let scripts = (globals.scripts || []).map(script => utils.resolvePath(script));
+	gulp.src(scripts)
 		.pipe(concat('globals.min.js'))
 		.pipe(_if(GULP_ENV.prod, uglify()))
 		.pipe(gulp.dest(paths.appBuildResources + '/js'));
 
-	let styles = (globals.styles || []).map(style => paths.appNodeModules + '/' + style);
-	return gulp.src(styles)
+	let styles = (globals.styles || []).map(style => utils.resolvePath(style));
+	gulp.src(styles)
 		.pipe(concat('globals.min.css'))
-		.pipe(_if(GULP_ENV.prod, uglify()))
+		.pipe(_if(GULP_ENV.prod, cleanCSS()))
 		.pipe(gulp.dest(paths.appBuildResources + '/css'));
+
+	let fonts = (globals.fonts || []).map(font => utils.resolvePath(font));
+	gulp.src(fonts)
+		.pipe(gulp.dest(paths.appBuildResources + '/fonts'));
 });

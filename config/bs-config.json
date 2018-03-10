@@ -1,9 +1,9 @@
 {
-  "port": 8000,
-  "server": {
-    "baseDir": "mobile/www",
-    "routes": {
-      "/node_modules": "node_modules"
-    }
-  }
+	"port": 8000,
+	"server": {
+		"baseDir": "cordova/www",
+		"routes": {
+			"/node_modules": "node_modules"
+		}
+	}
 }

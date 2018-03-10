@@ -1,10 +1,11 @@
 {
 	"name": "client",
-	"version": false,
 	"dependencies": {},
 	"globalDependencies": {
-		"core-js": "registry:dt/core-js",
-		"jasmine": "registry:dt/jasmine",
-		"node": "registry:dt/node"
+		"chai": "registry:dt/chai",
+		"node": "registry:dt/node",
+		"mocha": "registry:dt/mocha",
+		"jquery": "registry:dt/jquery",
+		"core-js": "registry:dt/core-js"
 	}
 }

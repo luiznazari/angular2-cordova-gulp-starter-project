@@ -1,22 +1,43 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>Cordova + Angular 2</title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<base href="./">
-		<link rel="icon" href="resources/img/favicon.ico">
-		<link rel="stylesheet" href="css/styles.min.css">
-		<script type="text/javascript" src="cordova.js"></script>
-		<!--
-			Globals JS must be declared in 'index.globals.json'.
-		-->
-		<script type="text/javascript" src="js/globals.min.js"></script>
-	</head>
-	<body>
-		<my-app>
-			<div class="center">Loading...</div>
-		</my-app>
-		<script type="text/javascript" src="js/bundle.min.js"></script>
-	</body>
+<html lang="pt-br">
+
+<head>
+	<title>Angular 2 + Cordova</title>
+	<meta name="description" content="Angular2 + Cordova Starter Project (boilerplate).">
+
+	<meta charset="UTF-8">
+	<meta name="theme-color" content="#c06b23">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, width=device-width">
+	<!--
+		'/' for Angular delepment.
+		'./' for Cordova build.
+	-->
+	<base href="{{base_href}}">
+
+	<!--
+		Globals JS and CSS must be declared in 'index.globals.json'.
+	-->
+
+	<link rel="icon" href="images/favicon.ico">
+	<link rel="icon" type="image/png" sizes="32x32" href="images/favicon.ico">
+	<link rel="stylesheet" href="css/globals.min.css">
+	<link rel="stylesheet" href="css/styles.min.css">
+
+	<script type="text/javascript">
+		window.queap = {
+			properties: JSON.parse('{{properties_json}}')
+		}
+	</script>
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="js/globals.min.js"></script>
+</head>
+
+<body>
+	<my-app>
+		<div class="center">Loading...</div>
+	</my-app>
+
+	<script type="text/javascript" src="js/bundle.min.js"></script>
+</body>
+
 </html>

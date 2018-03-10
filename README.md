@@ -20,7 +20,7 @@ my-app/
     - `.sasslintrc.yml` and `.tslintrc.json` can be customized as needed.
     gulp/
       - Gulp tasks are defined here.
-  mobile/
+  cordova/
     - Cordova project settings.
     www/
       - Output directory of build process.
@@ -40,8 +40,8 @@ Runs the app in the development mode and watch files for changes.
 
 ### `npm run build`
 
-Builds the app for production to the `mobile/www` folder.<br>
-Then you can run `cordova build <platform>` from `mobile` directory.
+Builds the app for production to the `cordova/www` folder.<br>
+Then you can run `cordova build <platform>` from `cordova` directory.
 
 ## Editors
 
@@ -64,7 +64,7 @@ Install [Sass Lint plugin](https://marketplace.visualstudio.com/items?itemName=g
         "**/*.js": {"when": "$(basename).ts"},
         "**/*.js.map": {"when": "$(basename)"}
     },
-    
+
     // Share same configurations as when building APP for SCSS files.
     "scss.validate": false,
     "sasslint.enable": true,

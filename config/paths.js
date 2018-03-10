@@ -17,10 +17,10 @@ module.exports = {
 	root: resolvePath(''),
 	config: resolvePath('config'),
 	appSrc: resolvePath('src'),
-	appBuild: resolvePath('mobile/www'),
+	appBuild: resolvePath('cordova/www'),
 	appPublic: resolvePath('public'),
 	appIndexTs: resolvePath('src/main.ts'),
-	appIndexHtml: resolvePath('public/index.html'),
-	appBuildResources: resolvePath('mobile/www'),
+	appIndexHtml: resolvePath('src/index.html'),
+	appBuildResources: resolvePath('cordova/www'),
 	appNodeModules: resolvePath('node_modules')
 };

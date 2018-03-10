@@ -23,7 +23,7 @@ gulp.task('lint:sass', function() {
 });
 
 // Compile SASS/SCSS to CSS, concatenate, apply autoprefixes and minify.
-gulp.task('compile:sass', function () {
+gulp.task('compile:sass', function() {
 	return gulp.src([
 			paths.appSrc + '/**/*.scss',
 			'!' + paths.appSrc + '/**/_*.scss'

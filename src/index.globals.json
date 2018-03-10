@@ -1,7 +1,9 @@
 {
-	"modules": [
+	"fonts": [],
+	"scripts": [
 		"core-js/client/shim.min.js",
 		"reflect-metadata/Reflect.js",
 		"zone.js/dist/zone.js"
-	]
+	],
+	"styles": []
 }

@@ -1,9 +1,15 @@
 {
 	"compilerOptions": {
-		"lib": [ "es5", "dom" ],
+		"lib": [
+			"es2015",
+			"dom"
+		],
+		"types": [
+			"node"
+		],
 		"target": "es5",
 		"module": "commonjs",
-		"outDir": "mobile/www",
+		"outDir": "cordova/www",
 		"moduleResolution": "node",
 		"sourceMap": true,
 		"noImplicitAny": true,
@@ -16,6 +22,10 @@
 		"suppressImplicitAnyIndexErrors": true
 	},
 	"exclude": [
-		"node_modules"
+		"test",
+		"config",
+		"cordova",
+		"node_modules",
+		"./node_modules"
 	]
 }
